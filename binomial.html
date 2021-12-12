@@ -24,7 +24,7 @@
           <ul>
             <li><a href="binomial.html">Binomial</a></li>
           <li><a href="hiper.html">Hipergeométrica</a></li>
-          <li><a href="multi.html">Multinomial</a></li>
+          <li><a href="multi2.html">Multinomial</a></li>
           <li><a href="poisson.html">Poisson</a></li>
           </ul>
         </div>
@@ -33,56 +33,39 @@
             <div class="col-6 align-self-center" style="border-style:outset;">
               <div id="main" class="text-secondary">
                 <!-- Aqui va el contenido principal-->
-                <h1 class="text-dark">Encabezado de prueba</h1>
-                <p>Aqui puede ir formulario para las distribuciones</p>
-                <form id="formularioDistribucion">
-                <div class="row mb-3">
-                <label for="input1" class="col-sm-2 col-form-label">Entrada 1</label>
-                <div class="col-sm-10">
-                <input type="text" class="form-control" id="input1">
-                </div>
-                </div>
-                <div class="row mb-3">
-                <label for="input2" class="col-sm-2 col-form-label">Entrada2</label>
-                <div class="col-sm-10">
-                <input type="number" class="form-control" id="input2">
-                </div>
-                </div>
-                <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                <div class="col-sm-10">
-                <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                <label class="form-check-label" for="gridRadios1">
-                Radio 1
-                </label>
-                </div>
-                <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                <label class="form-check-label" for="gridRadios2">
-                Radio 2
-                </label>
-                </div>
-                <div class="form-check disabled">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                <label class="form-check-label" for="gridRadios3">
-                Radio 3 Dehabilitado
-                </label>
-                </div>
-                </div>
-                </fieldset>
-                <div class="row mb-3">
-                <div class="col-sm-10 offset-sm-2">
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                <label class="form-check-label" for="gridCheck1">
-                  Ejemplo de checkbox
-                </label>
-                </div>
-                </div>
-                </div>
-                <button type="button" class="btn btn-primary">Calcular</button>
-                </form>
+                <h1 class="text-dark">Distribución Binomial</h1>
+                <p>Probabilidad P(x=k) en una distribución binomial B(n,p)</p>
+                <form id="formularioDistribucion" name="datos">
+                  <div class="row mb-3">
+                    <label for="n" class="col-sm-2 col-form-label">N= </label>
+                    <div class="col-sm-2">
+                      <input type=text class="form-control" size=12 id="n" name="n">
+                    </div>
+                    <label for="p" class="col-sm-2 col-form-label">P= </label>
+                    <div class="col-sm-2">
+                      <input type=text class="form-control" size=12 id="p" name="p">
+                    </div>
+                    <label for="k" class="col-sm-2 col-form-label">K= </label>
+                    <div class="col-sm-2">
+                      <input type=text class="form-control" size=12 id="k" name="k">
+                    </div>
+                  </div>
+                  <div class="row mb-3 justify-content-center">
+                    <div class="col">
+                      <input type=button class="btn btn-block btn-primary" size=12 name="fn" value="Calcular" onClick="bin()">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <p>Resultado:</p>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="input1" class="col-sm-4 col-form-label">P(x=k) =</label>
+                    <div class="col-sm-5">
+                      <input type=text class="form-control" size=12 id="prob" name="prob" readonly=readonly>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -91,5 +74,22 @@
       </div>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script >
+    
+    function fact(n)
+    {
+      f=1;
+      for (i=1;i <n+1; i++) { f=f*i };
+      return f 
+    }
+    
+    function bin()
+    {
+      k=parseInt(document.datos.k.value);
+      n=parseInt(document.datos.n.value);
+      p=parseFloat(document.datos.p.value);
+      document.datos.prob.value= fact(n)/(fact(n-k)*fact(k))*Math.pow(p,k)*Math.pow(1-p,n-k); 
+    }
+    </script>
   </body>
 </html>
